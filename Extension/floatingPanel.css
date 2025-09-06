@@ -1,38 +1,102 @@
-/* Scoped container style for PhishVault */
+/* Scoped container style for PhishVault - Side Panel */
 .phishvault-container {
-  width: 340px;
+  width: 380px;
+  height: 100vh;
   padding: 22px 20px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(14px) saturate(180%);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  box-shadow: -5px 0 30px rgba(0, 0, 0, 0.25);
   color: #000000;
   position: fixed;
-  top: 20px;
-  left: 20px;
+  top: 0;
+  right: -400px; /* Start off-screen */
+  bottom: 0;
   z-index: 999999; /* ensure it's always on top */
   font-family: "Segoe UI", sans-serif;
-  transition: all 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-sizing: border-box;
+  overflow-y: auto;
+}
+
+/* When active/visible */
+.phishvault-container.active {
+  right: 0;
+}
+
+/* Toggle button to show/hide panel */
+.phishvault-toggle {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 80px;
+  background: #3a86ff;
+  border-radius: 8px 0 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999998;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.phishvault-toggle:hover {
+  background: #2563eb;
+  width: 40px;
+}
+
+.phishvault-toggle::before {
+  content: "P";
+  color: white;
+  font-weight: bold;
+  font-size: 22px;
 }
 
 /* Dark mode container */
 .phishvault-container.dark-mode {
-  background: rgba(20, 20, 20, 0.85);
+  background: rgba(20, 20, 20, 0.95);
   color: #f0f0f0;
   backdrop-filter: blur(14px) saturate(150%);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75);
+  box-shadow: -5px 0 30px rgba(0, 0, 0, 0.75);
 }
 
-/* Drag header */
+.phishvault-toggle.dark-mode {
+  background: #1d4ed8;
+}
+
+.phishvault-toggle.dark-mode:hover {
+  background: #1e40af;
+}
+
+/* Panel header */
 .phishvault-container .phishvault-header {
   font-size: 22px;
   font-weight: bold;
-  margin-bottom: 18px;
-  cursor: move;
+  margin-bottom: 20px;
   text-align: center;
   user-select: none;
   color: inherit; /* inherit from container */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.phishvault-close {
+  cursor: pointer;
+  font-size: 20px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.phishvault-close:hover {
+  background: rgba(128, 128, 128, 0.2);
 }
 
 /* Label inside container */

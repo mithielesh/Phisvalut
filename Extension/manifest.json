@@ -1,14 +1,15 @@
 {
   "manifest_version": 3,
-  "name": "PhishVault Floating Panel",
+  "name": "PhishVault Side Panel",
   "version": "1.0",
   "description": "Scan URLs for phishing threats using AI",
   "permissions": [
     "scripting",
-    "activeTab"
+    "activeTab",
+    "storage"
   ],
   "action": {
-    "default_title": "PhishVault"
+    "default_title": "Open PhishVault"
   },
   "background": {
     "service_worker": "background.js"

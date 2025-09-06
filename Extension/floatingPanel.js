@@ -1,7 +1,11 @@
 (function () {
   const html = `
-    <div class="phishvault-container" id="draggable-container">
-      <div class="phishvault-header" id="drag-handle"> PhishVault</div>
+    <div class="phishvault-toggle" id="panel-toggle"></div>
+    <div class="phishvault-container" id="panel-container">
+      <div class="phishvault-header">
+        <span>PhishVault</span>
+        <span class="phishvault-close" id="panel-close">×</span>
+      </div>
 
       <label for="urlInput">Enter or paste a URL:</label>
       <input type="text" id="urlInput" placeholder="https://example.com" />
@@ -57,8 +61,9 @@
   containerWrapper.innerHTML = html;
   document.body.appendChild(containerWrapper);
 
-  const container = containerWrapper.querySelector('#draggable-container');
-  const dragHandle = containerWrapper.querySelector('#drag-handle');
+  const container = containerWrapper.querySelector('#panel-container');
+  const toggleBtn = containerWrapper.querySelector('#panel-toggle');
+  const closeBtn = containerWrapper.querySelector('#panel-close');
   const scanBtn = containerWrapper.querySelector('#scanBtn');
   const scanPageBtn = containerWrapper.querySelector('#scanPageBtn');
   const checkLeakBtn = containerWrapper.querySelector('#checkLeakBtn');
@@ -72,25 +77,42 @@
   const leakResult = containerWrapper.querySelector('#leakResult');
   const darkModeToggle = containerWrapper.querySelector('#darkModeToggle');
 
-  const savedX = localStorage.getItem('panelX');
-  const savedY = localStorage.getItem('panelY');
-  if (savedX && savedY) {
-    container.style.left = `${savedX}px`;
-    container.style.top = `${savedY}px`;
+  // Panel visibility state
+  let isPanelVisible = localStorage.getItem('phishvaultVisible') === 'true';
+  if (isPanelVisible) {
+    container.classList.add('active');
   }
 
+  // Toggle panel visibility
+  toggleBtn.addEventListener('click', () => {
+    container.classList.add('active');
+    isPanelVisible = true;
+    localStorage.setItem('phishvaultVisible', 'true');
+  });
+
+  // Close panel
+  closeBtn.addEventListener('click', () => {
+    container.classList.remove('active');
+    isPanelVisible = false;
+    localStorage.setItem('phishvaultVisible', 'false');
+  });
+
+  // Dark mode handling
   const darkModeEnabled = localStorage.getItem('phishvaultDarkMode') === 'true';
   if (darkModeEnabled) {
     container.classList.add('dark-mode');
+    toggleBtn.classList.add('dark-mode');
     darkModeToggle.checked = true;
   }
 
   darkModeToggle.addEventListener('change', () => {
     if (darkModeToggle.checked) {
       container.classList.add('dark-mode');
+      toggleBtn.classList.add('dark-mode');
       localStorage.setItem('phishvaultDarkMode', 'true');
     } else {
       container.classList.remove('dark-mode');
+      toggleBtn.classList.remove('dark-mode');
       localStorage.setItem('phishvaultDarkMode', 'false');
     }
   });
@@ -253,42 +275,28 @@
     showLeakResult(` <strong>No known leaks found for:</strong> ${query}`, "success");
   });
 
-  // Dragging Logic
-  let isDragging = false, offsetX = 0, offsetY = 0;
-
-  dragHandle.addEventListener('mousedown', startDrag);
-  document.addEventListener('mousemove', drag);
-  document.addEventListener('mouseup', stopDrag);
-
-  dragHandle.addEventListener('touchstart', startDrag);
-  document.addEventListener('touchmove', drag);
-  document.addEventListener('touchend', stopDrag);
-
-  function startDrag(e) {
-    isDragging = true;
-    const rect = container.getBoundingClientRect();
-    const clientX = e.clientX || e.touches[0].clientX;
-    const clientY = e.clientY || e.touches[0].clientY;
-    offsetX = clientX - rect.left;
-    offsetY = clientY - rect.top;
-    container.style.transition = 'none';
+  // Listen for messages from background script
+  if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.onMessage) {
+    chrome.runtime.onMessage.addListener((message) => {
+      if (message.action === 'togglePanel') {
+        if (container.classList.contains('active')) {
+          container.classList.remove('active');
+          localStorage.setItem('phishvaultVisible', 'false');
+        } else {
+          container.classList.add('active');
+          localStorage.setItem('phishvaultVisible', 'true');
+        }
+      }
+      return true;
+    });
   }
 
-  function drag(e) {
-    if (!isDragging) return;
-    const clientX = e.clientX || e.touches[0].clientX;
-    const clientY = e.clientY || e.touches[0].clientY;
-    const newX = clientX - offsetX;
-    const newY = clientY - offsetY;
-    container.style.left = `${newX}px`;
-    container.style.top = `${newY}px`;
-  }
-
-  function stopDrag() {
-    if (!isDragging) return;
-    isDragging = false;
-    const rect = container.getBoundingClientRect();
-    localStorage.setItem('panelX', rect.left);
-    localStorage.setItem('panelY', rect.top);
-  }
+  // Handle keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+    // Close panel on Escape key
+    if (e.key === 'Escape' && container.classList.contains('active')) {
+      container.classList.remove('active');
+      localStorage.setItem('phishvaultVisible', 'false');
+    }
+  });
 })();
