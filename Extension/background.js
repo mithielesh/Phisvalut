@@ -74,7 +74,7 @@ function injectPanel(tab) {
   // First inject CSS files
   chrome.scripting.insertCSS({
     target: { tabId: tab.id },
-    files: ['floatingPanel.css', 'ai-analysis.css']
+    files: ['floatingPanel.css', 'ai-analysis.css', 'side-nav.css']
   }).catch(err => console.error('CSS injection failed:', err));
 
   // Then inject JS files in order

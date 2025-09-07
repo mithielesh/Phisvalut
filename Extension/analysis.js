@@ -17,6 +17,8 @@ function getSecureAPIKey(keyName) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    console.log("Analysis.js loaded");
+    
     // DOM Elements
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabPanes = document.querySelectorAll('.tab-pane');
@@ -31,6 +33,56 @@ document.addEventListener('DOMContentLoaded', function () {
     const rescanButton = document.getElementById('rescan-btn');
     const exportPdfButton = document.getElementById('export-pdf-btn');
     const returnButton = document.getElementById('return-btn');
+    
+    // Side navigation elements
+    const navItems = document.querySelectorAll('.nav-item');
+    const mainContent = document.getElementById('mainContent');
+    const aiChatView = document.getElementById('aiChatView');
+    const historyView = document.getElementById('historyView');
+    const settingsView = document.getElementById('settingsView');
+    
+    // Handle navigation between views
+    if (navItems && navItems.length > 0) {
+        console.log("Navigation items found:", navItems.length);
+        
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all items
+                navItems.forEach(nav => nav.classList.remove('active'));
+                
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // Get the view to display
+                const view = this.getAttribute('data-view');
+                console.log("Switching to view:", view);
+                
+                // Hide all views
+                if (mainContent) mainContent.style.display = 'none';
+                if (aiChatView) aiChatView.style.display = 'none';
+                if (historyView) historyView.style.display = 'none';
+                if (settingsView) settingsView.style.display = 'none';
+                
+                // Show the selected view
+                switch (view) {
+                    case 'analysis':
+                        if (mainContent) mainContent.style.display = 'block';
+                        break;
+                    case 'ai-chat':
+                        if (aiChatView) aiChatView.style.display = 'block';
+                        break;
+                    case 'history':
+                        if (historyView) historyView.style.display = 'block';
+                        break;
+                    case 'settings':
+                        if (settingsView) settingsView.style.display = 'block';
+                        break;
+                }
+            });
+        });
+    } else {
+        console.log("No navigation items found");
+    }
 
     // Stat elements
     const pagesScannedElement = document.getElementById('pages-scanned');

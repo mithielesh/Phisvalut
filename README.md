@@ -1,23 +1,34 @@
-# PhishVault Deep Scan Feature
+# PhishVault Security Analyzer
 
-This project adds a "Deep Scan" feature to the PhishVault Chrome extension, which performs automated website scanning using Selenium.
+PhishVault is a Chrome extension for detecting and analyzing potential phishing threats and security vulnerabilities in websites.
 
 ## Components
 
-1. **Chrome Extension**: Frontend interface that triggers the scann## Technology Used
+1. **Chrome Extension**: Frontend interface that provides scanning and analysis features
+2. **Backend Service**: Node.js server that performs deep scanning and AI-powered analysis
+
+## Technology Used
 
 - JavaScript
 - Chrome Extension APIs
 - Node.js with Express
 - Selenium WebDriver for browser automation
-- WebSocket for real-time scan progress updates
+- AI-powered security analysis with Google's Gemini API
 - LocalStorage for saving user preferences and scan history
 
-## Enhanced Features (Latest Update)
+## Features
 
-### Comprehensive Crawling
+### Security Analysis
 - **Intelligent Form Detection**: Automatically identifies different form types including login forms
 - **Smart Field Analysis**: Determines field purpose based on multiple attributes (name, id, placeholder, etc.)
+- **Security Headers Check**: Analyzes headers for security best practices
+- **SSL/TLS Verification**: Checks for proper secure connections
+
+### NEW: Side Navigation & AI Chat Interface
+- **Side Navigation Bar**: Easy access to different sections of the extension
+- **AI Chat Assistant**: Dedicated AI chat interface for asking questions about security findings
+- **Security Explanations**: Get detailed explanations of technical security issues in plain language
+- **Custom Recommendations**: Receive personalized security advice based on scan results
 - **Context-Aware Form Filling**: Provides appropriate test data based on detected field purpose
 - **Multi-Page Navigation**: Follows links to explore site structure more thoroughly
 - **Interactive Element Testing**: Clicks buttons and interactions to reveal hidden content
