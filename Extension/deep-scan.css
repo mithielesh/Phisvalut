@@ -1,0 +1,162 @@
+/* Deep Scan Result Styling */
+.scan-summary {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+
+.dark-mode .scan-summary {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.risk-level {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: 500;
+  margin: 8px 0;
+}
+
+.risk-level.high {
+  background-color: rgba(244, 67, 54, 0.2);
+  color: #f44336;
+  border-left: 3px solid #f44336;
+}
+
+.risk-level.medium {
+  background-color: rgba(255, 152, 0, 0.2);
+  color: #ff9800;
+  border-left: 3px solid #ff9800;
+}
+
+.risk-level.low {
+  background-color: rgba(76, 175, 80, 0.2);
+  color: #4caf50;
+  border-left: 3px solid #4caf50;
+}
+
+.risk-level.unknown {
+  background-color: rgba(158, 158, 158, 0.2);
+  color: #9e9e9e;
+  border-left: 3px solid #9e9e9e;
+}
+
+#analysis-details {
+  margin-top: 16px;
+  width: 100%;
+}
+
+#analysis-details summary {
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 0;
+  user-select: none;
+  outline: none;
+}
+
+#analysis-details summary:hover {
+  color: #1a73e8;
+}
+
+.dark-mode #analysis-details summary:hover {
+  color: #8ab4f8;
+}
+
+.findings-table {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.finding-item {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  padding: 12px;
+  border-left: 4px solid transparent;
+}
+
+.dark-mode .finding-item {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.finding-item h4 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.finding-item p {
+  margin: 8px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.finding-item.high {
+  border-left-color: #f44336;
+}
+
+.finding-item.medium {
+  border-left-color: #ff9800;
+}
+
+.finding-item.low {
+  border-left-color: #4caf50;
+}
+
+.finding-item.info {
+  border-left-color: #2196f3;
+}
+
+.severity-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.severity-badge.high {
+  background-color: rgba(244, 67, 54, 0.2);
+  color: #f44336;
+}
+
+.severity-badge.medium {
+  background-color: rgba(255, 152, 0, 0.2);
+  color: #ff9800;
+}
+
+.severity-badge.low {
+  background-color: rgba(76, 175, 80, 0.2);
+  color: #4caf50;
+}
+
+.severity-badge.info {
+  background-color: rgba(33, 150, 243, 0.2);
+  color: #2196f3;
+}
+
+.finding-details {
+  display: flex;
+  font-size: 12px;
+  opacity: 0.8;
+  margin-top: 8px;
+}
+
+.location {
+  font-family: monospace;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.dark-mode .location {
+  background: rgba(255, 255, 255, 0.1);
+}
