@@ -1,38 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PhishVault - Security Analysis</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="analysis.css">
-    <link rel="stylesheet" href="direct-nav.css">
-    <link rel="stylesheet" href="chat-interface.css">
-    <!-- Add Font Awesome for icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        /* Ensure the side navigation is visible */
-        #sideNav {
-            display: block !important;
-            visibility: visible !important;
-            opacity: 1 !important;
-        }
-        
-        /* Fix for any potential z-index issues */
-        body, html {
-            overflow-x: hidden;
-        }
-    </style>
 </head>
-
 <body>
     <!-- Side Navigation -->
     <nav class="side-nav" id="sideNav">
         <div class="side-nav-header">
-            <img src="images/logo.png" alt="PhishVault Logo">
+            <img src="https://picsum.photos/seed/phishvault/40/40.jpg" alt="PhishVault Logo">
             <h3>PhishVault</h3>
-            <button class="toggle-nav" id="toggleNav"><i class="fas fa-chevron-left"></i></button>
         </div>
         <div class="nav-items">
             <div class="nav-item active" data-view="analysis">
@@ -48,23 +28,23 @@
                 <i class="fas fa-cog"></i> <span>Settings</span>
             </div>
         </div>
+        <div class="theme-toggle-container">
+            <span class="theme-label">Dark Mode</span>
+            <label class="switch">
+                <input type="checkbox" id="globalDarkModeToggle">
+                <span class="slider round"></span>
+            </label>
+        </div>
     </nav>
-    
+
+    <!-- Analysis View -->
     <div class="analysis-container main-content" id="mainContent">
         <header>
             <div class="logo-container">
-                <img src="images/logo.png" alt="PhishVault Logo" class="logo">
+                <img src="https://picsum.photos/seed/phishvault/40/40.jpg" alt="PhishVault Logo" class="logo">
                 <h1>PhishVault Security Analysis</h1>
             </div>
-            <div class="theme-toggle">
-                <label class="switch">
-                    <input type="checkbox" id="darkModeToggle">
-                    <span class="slider round"></span>
-                    <span class="mode-label"></span>
-                </label>
-            </div>
         </header>
-
         <div class="site-info-container">
             <div class="site-info">
                 <div class="url-display">
@@ -80,14 +60,12 @@
                 <div class="score-label" id="score-label">Calculating...</div>
             </div>
         </div>
-
         <div class="tabs">
             <button class="tab-button active" data-tab="summary">Summary</button>
             <button class="tab-button" data-tab="details">Detailed Findings</button>
             <button class="tab-button" data-tab="recommendations">Recommendations</button>
             <button class="tab-button" data-tab="technical">Technical Details</button>
         </div>
-
         <div class="tab-content">
             <div class="tab-pane active" id="summary">
                 <div class="loading-container" id="loading-analysis">
@@ -99,26 +77,22 @@
                     <!-- Summary content will be populated here -->
                 </div>
             </div>
-
             <div class="tab-pane" id="details">
                 <div id="details-content" class="content-section">
                     <!-- Details content will be populated here -->
                 </div>
             </div>
-
             <div class="tab-pane" id="recommendations">
                 <div id="recommendations-content" class="content-section">
                     <!-- Recommendations content will be populated here -->
                 </div>
             </div>
-
             <div class="tab-pane" id="technical">
                 <div id="technical-content" class="content-section">
                     <!-- Technical details will be populated here -->
                 </div>
             </div>
         </div>
-
         <div class="scan-stats">
             <div class="stat-item">
                 <i class="fas fa-file-alt"></i>
@@ -141,34 +115,24 @@
                 <span class="stat-label">Issues</span>
             </div>
         </div>
-
         <div class="action-buttons">
             <button id="rescan-btn" class="action-button"><i class="fas fa-sync"></i> Rescan</button>
             <button id="export-pdf-btn" class="action-button"><i class="fas fa-file-pdf"></i> Export Report</button>
             <button id="return-btn" class="action-button"><i class="fas fa-arrow-left"></i> Return</button>
         </div>
-
         <footer>
             <p>PhishVault Security Analysis Engine • Powered by AI</p>
         </footer>
     </div>
 
-    <!-- AI Chat View (hidden by default) -->
+    <!-- AI Chat View -->
     <div class="ai-chat-container main-content" id="aiChatView" style="display: none;">
         <header>
             <div class="logo-container">
-                <img src="images/logo.png" alt="PhishVault Logo" class="logo">
+                <img src="https://picsum.photos/seed/phishvault/40/40.jpg" alt="PhishVault Logo" class="logo">
                 <h1>PhishVault AI Assistant</h1>
             </div>
-            <div class="theme-toggle">
-                <label class="switch">
-                    <input type="checkbox" id="chatDarkModeToggle">
-                    <span class="slider round"></span>
-                    <span class="mode-label"></span>
-                </label>
-            </div>
         </header>
-
         <div class="chat-interface">
             <div class="chat-messages" id="chatMessages">
                 <div class="chat-message ai-message">
@@ -180,7 +144,6 @@
                     </div>
                 </div>
             </div>
-            
             <div class="chat-input-container">
                 <textarea id="chatInput" placeholder="Ask me about the security analysis or any phishing concerns..."></textarea>
                 <button id="sendChatBtn">
@@ -189,94 +152,76 @@
             </div>
         </div>
     </div>
-    
+
     <!-- History View -->
     <div class="history-container main-content" id="historyView" style="display: none;">
         <header>
             <h1>Scan History</h1>
         </header>
+        <div class="history-controls">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="history-search" placeholder="Search history...">
+            </div>
+            <button id="clear-history-btn" class="action-button"><i class="fas fa-trash"></i> Clear History</button>
+        </div>
         <div class="history-list" id="historyList">
             <!-- History items will be populated here -->
         </div>
     </div>
-    
+
     <!-- Settings View -->
     <div class="settings-container main-content" id="settingsView" style="display: none;">
         <header>
             <h1>Settings</h1>
         </header>
         <div class="settings-form">
-            <!-- Settings will be populated here -->
+            <div class="settings-section">
+                <h2>API Configuration</h2>
+                <div class="form-group">
+                    <label for="google-api-key">Google API Key (for Gemini)</label>
+                    <input type="password" id="google-api-key" placeholder="Enter your Google API key">
+                    <div class="description">This key is used to power the AI analysis features. It is stored locally and never sent to our servers.</div>
+                </div>
+            </div>
+            <div class="settings-section">
+                <h2>Scan Settings</h2>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="auto-scan">
+                    <label for="auto-scan">Enable automatic scanning when visiting new sites</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="deep-scan">
+                    <label for="deep-scan">Enable deep scanning (slower but more thorough)</label>
+                </div>
+            </div>
+            <div class="settings-section">
+                <h2>Notification Settings</h2>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="notify-high-risk">
+                    <label for="notify-high-risk">Notify on high-risk sites</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="notify-scan-complete">
+                    <label for="notify-scan-complete">Notify when scan is complete</label>
+                </div>
+            </div>
+            <div class="settings-section">
+                <h2>Appearance</h2>
+                <div class="form-group">
+                    <label for="theme-color">Theme Color</label>
+                    <select id="theme-color">
+                        <option value="blue">Blue (Default)</option>
+                        <option value="purple">Purple</option>
+                        <option value="green">Green</option>
+                        <option value="red">Red</option>
+                    </select>
+                </div>
+            </div>
+            <button id="save-settings-btn" class="save-settings-btn">Save Settings</button>
         </div>
     </div>
 
     <script src="analysis.js"></script>
-    <script src="chat.js"></script>
-    <script src="side-nav.js"></script>
-    <script>
-        // Inline script to ensure the navigation is visible
-        document.addEventListener('DOMContentLoaded', function() {
-            // Force the side navigation to be visible after a short delay
-            setTimeout(function() {
-                const sideNav = document.getElementById('sideNav');
-                if (sideNav) {
-                    console.log('Forcing side navigation visibility');
-                    sideNav.style.display = 'block';
-                    sideNav.style.visibility = 'visible';
-                    sideNav.style.opacity = '1';
-                    sideNav.style.zIndex = '9999';
-                }
-                
-                // Also try initializing the navigation manually
-                const toggleNavBtn = document.getElementById('toggleNav');
-                const mainContent = document.getElementById('mainContent');
-                const navItems = document.querySelectorAll('.nav-item');
-                const aiChatView = document.getElementById('aiChatView');
-                const historyView = document.getElementById('historyView');
-                const settingsView = document.getElementById('settingsView');
-                
-                if (toggleNavBtn && navItems.length) {
-                    console.log('Setting up navigation click handlers');
-                    
-                    // Set up navigation item click handlers
-                    navItems.forEach(item => {
-                        item.addEventListener('click', function() {
-                            const view = this.getAttribute('data-view');
-                            console.log('Clicked navigation item:', view);
-                            
-                            // Remove active class from all items
-                            navItems.forEach(nav => nav.classList.remove('active'));
-                            
-                            // Add active class to clicked item
-                            this.classList.add('active');
-                            
-                            // Hide all views
-                            if (mainContent) mainContent.style.display = 'none';
-                            if (aiChatView) aiChatView.style.display = 'none';
-                            if (historyView) historyView.style.display = 'none';
-                            if (settingsView) settingsView.style.display = 'none';
-                            
-                            // Show the selected view
-                            switch (view) {
-                                case 'analysis':
-                                    if (mainContent) mainContent.style.display = 'block';
-                                    break;
-                                case 'ai-chat':
-                                    if (aiChatView) aiChatView.style.display = 'block';
-                                    break;
-                                case 'history':
-                                    if (historyView) historyView.style.display = 'block';
-                                    break;
-                                case 'settings':
-                                    if (settingsView) settingsView.style.display = 'block';
-                                    break;
-                            }
-                        });
-                    });
-                }
-            }, 100);
-        });
-    </script>
 </body>
-
 </html>
