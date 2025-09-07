@@ -11,13 +11,36 @@
   "action": {
     "default_title": "Open PhishVault"
   },
+  "options_page": "settings.html",
   "background": {
     "service_worker": "background.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
   },
   "host_permissions": [
     "http://*/*",
     "https://*/*",
     "*://127.0.0.1/*",
     "*://localhost/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "analysis.html",
+        "analysis.css",
+        "analysis.js",
+        "config.js",
+        "ai-analysis.css",
+        "floatingPanel.css",
+        "floatingPanel.js",
+        "settings.html",
+        "settings.js",
+        "images/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
   ]
 }

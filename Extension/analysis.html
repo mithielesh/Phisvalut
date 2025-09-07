@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishVault - Security Analysis</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="analysis.css">
+    <!-- Add Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="analysis-container">
+        <header>
+            <div class="logo-container">
+                <img src="images/logo.png" alt="PhishVault Logo" class="logo">
+                <h1>PhishVault Security Analysis</h1>
+            </div>
+            <div class="theme-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="darkModeToggle">
+                    <span class="slider round"></span>
+                    <span class="mode-label"></span>
+                </label>
+            </div>
+        </header>
+
+        <div class="site-info-container">
+            <div class="site-info">
+                <div class="url-display">
+                    <span id="analyzed-url">Loading...</span>
+                    <button id="copy-url" title="Copy URL"><i class="fas fa-copy"></i></button>
+                </div>
+                <div class="scan-timestamp" id="scan-timestamp">Scan time: Loading...</div>
+            </div>
+            <div class="security-score-container">
+                <div class="security-score">
+                    <span id="security-score">?</span>/10
+                </div>
+                <div class="score-label" id="score-label">Calculating...</div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" data-tab="summary">Summary</button>
+            <button class="tab-button" data-tab="details">Detailed Findings</button>
+            <button class="tab-button" data-tab="recommendations">Recommendations</button>
+            <button class="tab-button" data-tab="technical">Technical Details</button>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="summary">
+                <div class="loading-container" id="loading-analysis">
+                    <div class="loading-spinner"></div>
+                    <p>Analyzing website security...</p>
+                    <p class="loading-subtext">This may take a few moments</p>
+                </div>
+                <div id="summary-content" class="content-section hidden">
+                    <!-- Summary content will be populated here -->
+                </div>
+            </div>
+
+            <div class="tab-pane" id="details">
+                <div id="details-content" class="content-section">
+                    <!-- Details content will be populated here -->
+                </div>
+            </div>
+
+            <div class="tab-pane" id="recommendations">
+                <div id="recommendations-content" class="content-section">
+                    <!-- Recommendations content will be populated here -->
+                </div>
+            </div>
+
+            <div class="tab-pane" id="technical">
+                <div id="technical-content" class="content-section">
+                    <!-- Technical details will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="scan-stats">
+            <div class="stat-item">
+                <i class="fas fa-file-alt"></i>
+                <span id="pages-scanned">0</span>
+                <span class="stat-label">Pages</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-list"></i>
+                <span id="forms-found">0</span>
+                <span class="stat-label">Forms</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-link"></i>
+                <span id="links-discovered">0</span>
+                <span class="stat-label">Links</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span id="security-issues">0</span>
+                <span class="stat-label">Issues</span>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button id="rescan-btn" class="action-button"><i class="fas fa-sync"></i> Rescan</button>
+            <button id="export-pdf-btn" class="action-button"><i class="fas fa-file-pdf"></i> Export Report</button>
+            <button id="return-btn" class="action-button"><i class="fas fa-arrow-left"></i> Return</button>
+        </div>
+
+        <footer>
+            <p>PhishVault Security Analysis Engine • Powered by AI</p>
+        </footer>
+    </div>
+
+    <script src="analysis.js"></script>
+</body>
+
+</html>

@@ -13,6 +13,9 @@ yarn.lock
 .env.test.local
 .env.production.local
 
+# API Keys and Sensitive Configuration
+Extension/config.js
+
 # Build outputs
 dist/
 build/

@@ -69,8 +69,29 @@ This project adds a "Deep Scan" feature to the PhishVault Chrome extension, whic
 ### Extension Setup
 1. Open Chrome and go to `chrome://extensions/`
 2. Enable "Developer mode" in the top right
-3. Click "Load unpacked" and select the `Extension` directory
-4. The PhishVault extension should now be available in your browser
+3. Create a `config.js` file in the `Extension` directory:
+   - Copy `config.sample.js` to `config.js`
+   - Add your actual API keys to the new file
+   - **Important**: Never commit this file to the repository
+4. Click "Load unpacked" and select the `Extension` directory
+5. The PhishVault extension should now be available in your browser
+
+### API Keys Setup
+For AI-powered analysis features, you'll need to obtain and configure API keys:
+
+1. **Google Gemini API**:
+   - Go to the [Google AI Studio](https://makersuite.google.com/app/apikey)
+   - Create an API key for the Gemini model
+   - Add the key to your `config.js` file
+
+Example config.js:
+```javascript
+const CONFIG = {
+  API_KEYS: {
+    GOOGLE_API_KEY: 'your-actual-api-key-here'
+  }
+};
+```
 
 ## Usage
 

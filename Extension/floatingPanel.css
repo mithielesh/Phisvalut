@@ -9,9 +9,11 @@
   color: #000000;
   position: fixed;
   top: 0;
-  right: -400px; /* Start off-screen */
+  right: -400px;
+  /* Start off-screen */
   bottom: 0;
-  z-index: 999999; /* ensure it's always on top */
+  z-index: 999999;
+  /* ensure it's always on top */
   font-family: "Segoe UI", sans-serif;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-sizing: border-box;
@@ -62,6 +64,16 @@
   box-shadow: -5px 0 30px rgba(0, 0, 0, 0.75);
 }
 
+/* Make sure all headings have proper color */
+.phishvault-container.dark-mode h1,
+.phishvault-container.dark-mode h2,
+.phishvault-container.dark-mode h3,
+.phishvault-container.dark-mode h4,
+.phishvault-container.dark-mode h5,
+.phishvault-container.dark-mode h6 {
+  color: #ffffff;
+}
+
 .phishvault-toggle.dark-mode {
   background: #1d4ed8;
 }
@@ -77,7 +89,8 @@
   margin-bottom: 20px;
   text-align: center;
   user-select: none;
-  color: inherit; /* inherit from container */
+  color: inherit;
+  /* inherit from container */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -104,7 +117,8 @@
   font-size: 14px;
   margin-top: 10px;
   display: block;
-  color: inherit; /* inherit from container */
+  color: inherit;
+  /* inherit from container */
 }
 
 /* Inputs and dropdowns */
@@ -192,7 +206,69 @@
 
 /* Hidden utility class */
 .phishvault-container .hidden {
-  display: none;
+  display: none !important;
+}
+
+/* Details and Summary styling */
+.phishvault-container details {
+  margin: 10px 0;
+}
+
+.phishvault-container details summary {
+  font-weight: 500;
+  margin-bottom: 10px;
+  outline: none;
+  color: inherit;
+  text-decoration: underline;
+}
+
+.phishvault-container details summary:hover {
+  opacity: 0.8;
+}
+
+.phishvault-container details[open] summary {
+  margin-bottom: 15px;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
+  padding-bottom: 8px;
+}
+
+/* Special tags */
+.phishvault-container .visited-tag {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background-color: rgba(72, 187, 120, 0.2);
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.phishvault-container .warning-tag {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background-color: rgba(237, 137, 54, 0.2);
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+/* Risk indicators */
+.phishvault-container .risk-indicator {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.phishvault-container .risk-green {
+  background-color: rgba(72, 187, 120, 0.2);
+}
+
+.phishvault-container .risk-orange {
+  background-color: rgba(237, 137, 54, 0.2);
+}
+
+.phishvault-container .risk-red {
+  background-color: rgba(245, 101, 101, 0.2);
 }
 
 /* Drag handle */
@@ -206,4 +282,98 @@
 /* Draggable smooth movement */
 .phishvault-container#draggable-container {
   transition: top 0.1s ease, left 0.1s ease;
+}
+
+/* Advanced Analysis button */
+.analysis-btn {
+  background: linear-gradient(135deg, #4a6fe9, #8338ec) !important;
+  margin-top: 10px;
+  width: 100%;
+  font-weight: 600;
+  color: white !important;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.analysis-btn:hover {
+  background: linear-gradient(135deg, #385bd2, #7230d1) !important;
+  transform: translateY(-2px);
+}
+
+/* Risk Summary Card */
+#riskSummaryCard {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin: 15px 0;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  border-left: 5px solid #9ca3af;
+  /* Default color */
+}
+
+#riskSummaryCard.hidden {
+  display: none;
+}
+
+#riskSummaryCard.risk-low {
+  border-left-color: #10b981;
+  /* Green for low risk */
+}
+
+#riskSummaryCard.risk-medium {
+  border-left-color: #f59e0b;
+  /* Yellow/amber for medium risk */
+}
+
+#riskSummaryCard.risk-high {
+  border-left-color: #ef4444;
+  /* Red for high risk */
+}
+
+.risk-indicator {
+  margin-right: 15px;
+}
+
+#riskLevelBadge {
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  background-color: #9ca3af;
+  /* Default color */
+}
+
+#riskLevelBadge.risk-low {
+  background-color: #10b981;
+  /* Green */
+}
+
+#riskLevelBadge.risk-medium {
+  background-color: #f59e0b;
+  /* Yellow/amber */
+}
+
+#riskLevelBadge.risk-high {
+  background-color: #ef4444;
+  /* Red */
+}
+
+.risk-summary {
+  flex: 1;
+}
+
+.risk-summary h4 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+}
+
+.risk-summary p {
+  margin: 0;
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.4;
 }

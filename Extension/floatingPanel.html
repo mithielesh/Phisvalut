@@ -41,12 +41,24 @@
     <div class="button-group">
       <button id="scanBtn"> Scan Link</button>
       <button id="scanPageBtn">Scan This Page</button>
+      <button id="analysisBtn" class="analysis-btn">Advanced Analysis</button>
     </div>
 
     <!-- Result Box -->
     <div id="resultBox" class="hidden">
       <h4>Result:</h4>
       <div id="result"></div>
+    </div>
+    
+    <!-- Risk Summary Card -->
+    <div id="riskSummaryCard" class="hidden">
+      <div class="risk-indicator">
+        <span id="riskLevelBadge">Unknown</span>
+      </div>
+      <div class="risk-summary">
+        <h4>AI Risk Analysis</h4>
+        <p id="riskSummaryText">Website security analysis not available.</p>
+      </div>
     </div>
 
     <hr />
@@ -65,5 +77,6 @@
   </div>
 
   <script src="floatingPanel.js"></script>
+  <script src="aiSecurityAnalysis.js"></script>
 </body>
 </html>
