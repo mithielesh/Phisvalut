@@ -45,6 +45,7 @@
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -183,11 +184,11 @@
     .chat-message {
         max-width: 95%;
     }
-    
+
     .chat-input-container {
         padding: 10px;
     }
-    
+
     #chatInput {
         padding: 10px 12px;
     }
