@@ -38,6 +38,9 @@
         "deepScan.js",
         "floatingPanel.css",
         "floatingPanel.js",
+        "side-nav.css",
+        "side-nav.js",
+        "direct-nav.css",
         "settings.html",
         "settings.js",
         "images/*"
